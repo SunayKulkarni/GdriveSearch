@@ -1,9 +1,17 @@
 from __future__ import annotations
 
+import logging
+from pathlib import Path
 from uuid import uuid4
 
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+
+logging.basicConfig(level=logging.INFO)
+
+_env_path = Path(__file__).resolve().parent.parent / ".env"
+load_dotenv(_env_path)
 
 from .agent import run_agent
 from .models import ChatRequest, ChatResponse, FileResult
