@@ -13,8 +13,8 @@ logging.basicConfig(level=logging.INFO)
 _env_path = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(_env_path)
 
-from .agent import run_agent
-from .models import ChatRequest, ChatResponse, FileResult
+from backend.agent import run_agent
+from backend.models import ChatRequest, ChatResponse, FileResult
 
 app = FastAPI()
 
