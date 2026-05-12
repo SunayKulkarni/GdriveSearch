@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import sys
 from pathlib import Path
 from uuid import uuid4
 
@@ -10,7 +11,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 logging.basicConfig(level=logging.INFO)
 
-_env_path = Path(__file__).resolve().parent.parent / ".env"
+_repo_root = Path(__file__).resolve().parent.parent
+if str(_repo_root) not in sys.path:
+    sys.path.insert(0, str(_repo_root))
+
+_env_path = _repo_root / ".env"
 load_dotenv(_env_path)
 
 from backend.agent import run_agent
